@@ -28,19 +28,23 @@ public class LootboxLoader {
 		if (lootboxDir.exists() && lootboxDir.isDirectory()) {
 			for (File file : Objects.requireNonNull(lootboxDir.listFiles())) {
 				if (file.isFile() && file.getName().endsWith(".json")) {
+					String filename = file.getName();
 					try {
-						// Log the file content for debugging
 						String content = Files.readString(file.toPath());
-						LOGGER.info("Loading lootbox data from file: {}", file.getName());
-						LOGGER.info("File content:\n{}", content);
+						LOGGER.info("Loading lootbox data from file: {}", filename);
 
 						// Parse the JSON content
 						LootboxData data = GSON.fromJson(content, LOOTBOX_TYPE);
-						lootboxes.put(file.getName().replace(".json", ""), data);
+
+						// Set the ID to the filename (without the extension)
+						data.setId(filename.replace(".json", ""));
+
+						// Add to the lootboxes map
+						lootboxes.put(filename.replace(".json", ""), data);
 					} catch (IOException e) {
-						LOGGER.error("[Create-CC-Lootboxes] Failed to read file: {}", file.getName(), e);
+						LOGGER.error("[Create-CC-Lootboxes] Failed to read file: {}", filename, e);
 					} catch (JsonSyntaxException e) {
-						LOGGER.error("[Create-CC-Lootboxes] Malformed JSON in file: {}", file.getName(), e);
+						LOGGER.error("[Create-CC-Lootboxes] Malformed JSON in file: {}", filename, e);
 					}
 				}
 			}

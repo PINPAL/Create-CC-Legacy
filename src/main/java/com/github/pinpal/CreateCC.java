@@ -1,12 +1,17 @@
 package com.github.pinpal;
 
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,36 +22,23 @@ public class CreateCC {
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
+    // Define Deferred Registers for blocks and items
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final RegistryObject<Block> LOOTBOX_BLOCK = BLOCKS.register("lootbox",
+            () -> new Block(BlockBehaviour.Properties.of(Material.WOOD)));
+    public static final RegistryObject<Item> LOOTBOX_BLOCK_ITEM = ITEMS.register("lootbox",
+            () -> new BlockItem(LOOTBOX_BLOCK.get(), new Item.Properties()));
+
     public CreateCC() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
 
-        // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+        // Register the Deferred Register to the mod event bus so the lootbox gets registered
+        BLOCKS.register(modEventBus);
+        ITEMS.register(modEventBus);
 
-        // Register client setup
-        modEventBus.addListener(this::clientSetup);
-
-        // Register server setup
-        modEventBus.addListener(this::serverSetup);
-
-        // Register other event handlers if needed
-        forgeEventBus.register(this);
+        // Register ourselves for server and other game events we are interested in
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
-    }
-
-    private void clientSetup(final FMLClientSetupEvent event) {
-        // Client-specific setup, such as registering JEI plugins
-        LOGGER.info("HELLO FROM CLIENT SETUP");
-        // Register JEI plugin here if not done automatically
-    }
-
-    private void serverSetup(final FMLDedicatedServerSetupEvent event) {
-        // Server-specific setup
-        LOGGER.info("HELLO FROM SERVER SETUP");
-    }
 }

@@ -8,6 +8,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -51,21 +52,27 @@ public class JEIPlugin implements IModPlugin {
 		// Create a recipe for each lootbox
 		List<LootboxRecipe> recipes = new ArrayList<>();
 		for (Map.Entry<String, LootboxData> entry : lootboxes.entrySet()) {
-			LOGGER.info("Registering lootbox recipe: " + entry.getKey());
 			LootboxData lootbox = entry.getValue();
 
-			List<ItemStack> outputs = new ArrayList<>();
-			List<Float> outputChances = new ArrayList<>();
+			// Input Lootbox
+			String lootboxId = "kubejs:lootbox_" + lootbox.getId();
+			ItemStack input = new ItemStack(Registry.ITEM.get(new ResourceLocation(lootboxId)));
+
+			// Total Weight
 			float totalWeight = lootbox.getTotalWeight();
 
+			// Output Items
+			List<ItemStack> outputs = new ArrayList<>();
+			List<Float> outputChances = new ArrayList<>();
 			for (LootboxData.LootboxItem item : lootbox.getItems()) {
 				ItemStack itemStack = new ItemStack(Registry.ITEM.get(new ResourceLocation(item.getItem())));
 				outputs.add(itemStack);
 				outputChances.add(item.getWeight() / totalWeight);
 			}
 
+			LOGGER.info("Registering Lootbox Recipe: " + entry.getKey() + "with Lootbox ID: " + lootboxId);
 			recipes.add(new LootboxRecipe(
-					new ItemStack(Items.COMMAND_BLOCK),  // Example input item
+					input,
 					outputs,
 					outputChances,
 					lootbox.getRolls(),

@@ -6,11 +6,16 @@ import java.util.List;
 
 public class LootboxData {
 	private String name;
+	private String id;
 	private int rolls;
 	private List<LootboxItem> items;
 
 	public String getName() {
 		return name;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public int getRolls() {
@@ -27,6 +32,10 @@ public class LootboxData {
 
 	public List<LootboxItem> getItems() {
 		return items;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public static class LootboxItem {

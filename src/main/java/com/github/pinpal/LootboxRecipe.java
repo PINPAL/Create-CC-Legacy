@@ -12,7 +12,7 @@ public class LootboxRecipe {
 	private final String name;
 
 	public LootboxRecipe(ItemStack input, List<ItemStack> outputs, List<Float> outputChance, int rolls, String name) {
-		this.input = new ItemStack(Items.COMMAND_BLOCK);
+		this.input = input;
 		this.outputs = outputs;
 		this.outputChance = outputChance;
 		this.rolls = rolls;

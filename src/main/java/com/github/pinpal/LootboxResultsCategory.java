@@ -16,8 +16,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.client.Minecraft;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger("createcc");
 
 	private final Component title;
 	private final IDrawable background;
@@ -39,7 +43,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 				new ResourceLocation("createcc", "textures/gui/lootbox_jei.png"),
 				0, 0, guiWidth, guiHeight
 		);
-		this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(Items.COMMAND_BLOCK));
+		this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(CreateCC.LOOTBOX_BLOCK_ITEM.get()));
 
 	}
 
@@ -68,6 +72,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 		// Draw input slot
 		builder.addSlot(RecipeIngredientRole.INPUT, padding, padding)
 				.addItemStack(recipe.getInput());
+		LOGGER.info("Setting recipe for " + recipe.getInput());
 
 		// Draw output slots
 		int x = padding + slotPadding;
@@ -95,7 +100,8 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 
 	@Override
 	public void draw(LootboxRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX,
-	                 double mouseY) {
+	                 double mouseY)
+	{
 		Minecraft minecraft = Minecraft.getInstance();
 		Font font = minecraft.font;
 
