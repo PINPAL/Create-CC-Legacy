@@ -7,14 +7,14 @@ import java.util.List;
 public class LootboxRecipe {
 	private final ItemStack input;
 	private final List<ItemStack> outputs;
-	private final List<Float> outputWeights;
+	private final List<Float> outputChance;
 	private final int rolls;
 	private final String name;
 
-	public LootboxRecipe(ItemStack input, List<ItemStack> outputs, List<Float> outputWeights, int rolls, String name) {
+	public LootboxRecipe(ItemStack input, List<ItemStack> outputs, List<Float> outputChance, int rolls, String name) {
 		this.input = new ItemStack(Items.COMMAND_BLOCK);
 		this.outputs = outputs;
-		this.outputWeights = outputWeights;
+		this.outputChance = outputChance;
 		this.rolls = rolls;
 		this.name = name;
 	}
@@ -27,8 +27,8 @@ public class LootboxRecipe {
 		return outputs;
 	}
 
-	public List<Float> getOutputWeights() {
-		return outputWeights;
+	public List<Float> getOutputChance() {
+		return outputChance;
 	}
 
 	public int getRolls() {
@@ -40,7 +40,7 @@ public class LootboxRecipe {
 	}
 
 	public boolean isValid() {
-		return !outputs.isEmpty() && outputWeights.size() == outputs.size() && rolls > 0;
+		return !outputs.isEmpty() && outputChance.size() == outputs.size() && rolls > 0;
 	}
 }
 

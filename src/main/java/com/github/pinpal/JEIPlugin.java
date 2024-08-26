@@ -55,18 +55,19 @@ public class JEIPlugin implements IModPlugin {
 			LootboxData lootbox = entry.getValue();
 
 			List<ItemStack> outputs = new ArrayList<>();
-			List<Float> outputWeights = new ArrayList<>();
+			List<Float> outputChances = new ArrayList<>();
+			float totalWeight = lootbox.getTotalWeight();
 
 			for (LootboxData.LootboxItem item : lootbox.getItems()) {
 				ItemStack itemStack = new ItemStack(Registry.ITEM.get(new ResourceLocation(item.getItem())));
 				outputs.add(itemStack);
-				outputWeights.add(item.getWeight());
+				outputChances.add(item.getWeight() / totalWeight);
 			}
 
 			recipes.add(new LootboxRecipe(
 					new ItemStack(Items.COMMAND_BLOCK),  // Example input item
 					outputs,
-					outputWeights,
+					outputChances,
 					lootbox.getRolls(),
 					lootbox.getName()
 			));

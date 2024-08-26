@@ -17,6 +17,14 @@ public class LootboxData {
 		return rolls;
 	}
 
+	public float getTotalWeight() {
+		float totalWeight = 0;
+		for (LootboxItem item : items) {
+			totalWeight += item.getWeight();
+		}
+		return totalWeight;
+	}
+
 	public List<LootboxItem> getItems() {
 		return items;
 	}
