@@ -77,7 +77,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 					.addItemStack(output);
 			x += slotSize;
 			if (x > columns * slotSize) {
-				x = padding;
+				x = padding + slotPadding;
 				y += slotSize + slotSize / 2;
 			}
 		}
