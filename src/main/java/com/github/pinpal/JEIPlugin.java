@@ -33,13 +33,13 @@ public class JEIPlugin implements IModPlugin {
 
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registration) {
-		LOGGER.info("Registering Lootbox categories with JEI");
+		LOGGER.info("Registering Lootbox Categories with JEI");
 		registration.addRecipeCategories(new LootboxResultsCategory(registration.getJeiHelpers().getGuiHelper()));
 	}
 
 	@Override
 	public void registerRecipes(IRecipeRegistration registration) {
-		LOGGER.info("Registering Lootbox recipes with JEI");
+		LOGGER.info("Registering Lootboxes recipes with JEI");
 
 		// Create test recipes
 		List<LootboxRecipe> recipes = new ArrayList<>();

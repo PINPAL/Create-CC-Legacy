@@ -86,6 +86,16 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 		}
 	}
 
+	private String formatPercentage(float decimal) {
+		// Format the percentage to 0 decimal places
+		String percentageString = String.format("%.0f", decimal * 100) + "%";
+		// Format the percentage if it's less than 1%
+		if (decimal < 0.01) {
+			percentageString = "<1%";
+		}
+		return percentageString;
+	}
+
 	@Override
 	public void draw(LootboxRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX,
 	                 double mouseY) {
@@ -98,5 +108,18 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 		// Draw roll count
 		String rollsText = "Rolls: " + recipe.getRolls();
 		font.draw(poseStack, rollsText, 30, 18, 0xA8A8A8);
+
+		// Draw output weights
+		int x = padding;
+		int y = navHeight + slotSize;
+		for (int i = 0; i < recipe.getOutputs().size(); i++) {
+			String weightText = formatPercentage(recipe.getOutputWeights().get(i));
+			font.draw(poseStack, weightText, x + 2, y + 2, 0xA8A8A8);
+			x += slotSize;
+			if (x > columns * slotSize) {
+				x = padding;
+				y += slotSize + slotSize / 2;
+			}
+		}
 	}
 }
