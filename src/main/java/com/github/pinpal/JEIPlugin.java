@@ -1,10 +1,13 @@
 package com.github.pinpal;
 
+import com.github.pinpal.util.LootboxData;
+import com.github.pinpal.util.LootboxLoader;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
@@ -41,23 +45,32 @@ public class JEIPlugin implements IModPlugin {
 	public void registerRecipes(IRecipeRegistration registration) {
 		LOGGER.info("Registering Lootboxes recipes with JEI");
 
-		// Create test recipes
-		List<LootboxRecipe> recipes = new ArrayList<>();
-		List<ItemStack> outputs = Arrays.asList(
-				new ItemStack(Items.DIAMOND, 1),
-				new ItemStack(Items.EMERALD, 1),
-				new ItemStack(Items.GOLD_INGOT, 1)
-		);
-		List<Float> outputWeights = Arrays.asList(0.5f, 0.3f, 0.2f);
+		// Load lootboxes from JSON
+		Map<String, LootboxData> lootboxes = LootboxLoader.loadLootboxes();
 
-		// Add a test recipe
-		recipes.add(new LootboxRecipe(
-				new ItemStack(Items.COMMAND_BLOCK),  // Input item
-				outputs,
-				outputWeights,
-				3,  // Number of rolls
-				"Test Lootbox"
-		));
+		// Create a recipe for each lootbox
+		List<LootboxRecipe> recipes = new ArrayList<>();
+		for (Map.Entry<String, LootboxData> entry : lootboxes.entrySet()) {
+			LOGGER.info("Registering lootbox recipe: " + entry.getKey());
+			LootboxData lootbox = entry.getValue();
+
+			List<ItemStack> outputs = new ArrayList<>();
+			List<Float> outputWeights = new ArrayList<>();
+
+			for (LootboxData.LootboxItem item : lootbox.getItems()) {
+				ItemStack itemStack = new ItemStack(Registry.ITEM.get(new ResourceLocation(item.getItem())));
+				outputs.add(itemStack);
+				outputWeights.add(item.getWeight());
+			}
+
+			recipes.add(new LootboxRecipe(
+					new ItemStack(Items.COMMAND_BLOCK),  // Example input item
+					outputs,
+					outputWeights,
+					lootbox.getRolls(),
+					lootbox.getName()
+			));
+		}
 
 		// Register the recipes with JEI
 		registration.addRecipes(LOOTBOX_RESULTS, recipes);
