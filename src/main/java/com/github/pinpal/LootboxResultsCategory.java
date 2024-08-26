@@ -2,6 +2,10 @@ package com.github.pinpal;
 
 import com.github.pinpal.JEIPlugin;
 import com.github.pinpal.LootboxRecipe;
+import com.mojang.blaze3d.vertex.PoseStack;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiComponent;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -14,6 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.client.Minecraft;
 
 public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 
@@ -24,7 +29,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 	private static final int columns = 7;
 	private static final int rows = 3;
 	private static final int slotSize = 24;
-	private static final int slotPadding = 4;
+	private static final int slotPadding = 2;
 	private static final int padding = 8;
 	private static final int navHeight = 34;
 	private static final int guiWidth = padding + columns * slotSize;
@@ -61,15 +66,13 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 		return icon;
 	}
 
-
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, LootboxRecipe recipe, IFocusGroup focuses) {
-		// Logic to set up the layout of the recipe slots
-
-		// Example setup:
+		// Draw input slot
 		builder.addSlot(RecipeIngredientRole.INPUT, padding, padding)
 				.addItemStack(recipe.getInput());
 
+		// Draw output slots
 		int x = padding + slotPadding;
 		int y = navHeight + slotPadding + padding / 2;
 		for (ItemStack output : recipe.getOutputs()) {
@@ -81,5 +84,19 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 				y += slotSize + slotSize / 2;
 			}
 		}
+	}
+
+	@Override
+	public void draw(LootboxRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX,
+	                 double mouseY) {
+		Minecraft minecraft = Minecraft.getInstance();
+		Font font = minecraft.font;
+
+		// Draw recipe name
+		font.draw(poseStack, recipe.getName(), 30, 6, 0xFFFFFF);
+
+		// Draw roll count
+		String rollsText = "Rolls: " + recipe.getRolls();
+		font.draw(poseStack, rollsText, 30, 18, 0xA8A8A8);
 	}
 }
