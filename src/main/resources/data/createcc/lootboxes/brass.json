@@ -1,0 +1,70 @@
+{
+	"name": "Brass",
+	"rolls": 8,
+	"items": [
+		{
+			"item": "#forge:ingots/brass",
+			"weight": 30
+		},
+		{
+			"item": "#forge:nuggets/brass",
+			"weight": 30
+		},
+		{
+			"item": "create:cogwheel",
+			"weight": 25
+		},
+		{
+			"item": "create:shaft",
+			"weight": 25
+		},
+		{
+			"item": "create:brass_casing",
+			"weight": 30
+		},
+		{
+			"item": "kubejs:iron_repair_kit",
+			"weight": 4
+		},
+		{
+			"item": "kubejs:steel_repair_kit",
+			"weight": 1
+		},
+		{
+			"item": "create:brass_tunnel",
+			"weight": 10
+		},
+		{
+			"item": "create:brass_funnel",
+			"weight": 10
+		},
+		{
+			"item": "create:smart_chute",
+			"weight": 10
+		},
+		{
+			"item": "create:mechanical_crafter",
+			"weight": 0.5
+		},
+		{
+			"item": "create:crushing_wheel",
+			"weight": 1
+		},
+		{
+			"item": "create:sequenced_gearshift",
+			"weight": 1
+		},
+		{
+			"item": "create:stockpile_switch",
+			"weight": 1
+		},
+		{
+			"item": "create:rotation_speed_controller",
+			"weight": 0.25
+		},
+		{
+			"item": "create:mechanical_arm",
+			"weight": 0.5
+		}
+	]
+}

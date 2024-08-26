@@ -1,0 +1,78 @@
+{
+	"name": "Andesite",
+	"rolls": 10,
+	"items": [
+		{
+			"item": "create:andesite_alloy",
+			"weight": 40
+		},
+		{
+			"item": "minecraft:dried_kelp",
+			"weight": 20
+		},
+		{
+			"item": "create:zinc_ingot",
+			"weight": 20
+		},
+		{
+			"item": "minecraft:iron_ingot",
+			"weight": 20
+		},
+		{
+			"item": "create:andesite_casing",
+			"weight": 20
+		},
+		{
+			"item": "create:cogwheel",
+			"weight": 15
+		},
+		{
+			"item": "create:shaft",
+			"weight": 15
+		},
+		{
+			"item": "create:large_cogwheel",
+			"weight": 10
+		},
+		{
+			"item": "create:mechanical_saw",
+			"weight": 1
+		},
+		{
+			"item": "create:andesite_funnel",
+			"weight": 5
+		},
+		{
+			"item": "create:andesite_tunnel",
+			"weight": 1
+		},
+		{
+			"item": "create:depot",
+			"weight": 1
+		},
+		{
+			"item": "create:basin",
+			"weight": 1
+		},
+		{
+			"item": "sliceanddice:slicer",
+			"weight": 0.5
+		},
+		{
+			"item": "kubejs:copper_repair_kit",
+			"weight": 2
+		},
+		{
+			"item": "create:mechanical_mixer",
+			"weight": 1
+		},
+		{
+			"item": "create:deployer",
+			"weight": 0.5
+		},
+		{
+			"item": "create:millstone",
+			"weight": 1
+		}
+	]
+}

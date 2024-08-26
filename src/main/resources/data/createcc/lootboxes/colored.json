@@ -1,0 +1,70 @@
+{
+	"name": "Colored",
+	"rolls": 1,
+	"items": [
+		{
+			"item": "kubejs:white_dye_fluid_bucket",
+			"weight": 2
+		},
+		{
+			"item": "kubejs:orange_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:magenta_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:light_blue_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:yellow_dye_fluid_bucket",
+			"weight": 2
+		},
+		{
+			"item": "kubejs:lime_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:pink_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:gray_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:light_gray_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:cyan_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:purple_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:blue_dye_fluid_bucket",
+			"weight": 2
+		},
+		{
+			"item": "kubejs:brown_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:green_dye_fluid_bucket",
+			"weight": 1
+		},
+		{
+			"item": "kubejs:red_dye_fluid_bucket",
+			"weight": 2
+		},
+		{
+			"item": "kubejs:black_dye_fluid_bucket",
+			"weight": 1
+		}
+	]
+}

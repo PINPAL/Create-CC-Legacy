@@ -1,0 +1,90 @@
+{
+	"name": "Redstone",
+	"rolls": 16,
+	"items": [
+		{
+			"item": "#forge:gems/redstone",
+			"weight": 60
+		},
+		{
+			"item": "minecraft:redstone_torch",
+			"weight": 40
+		},
+		{
+			"item": "minecraft:repeater",
+			"weight": 10
+		},
+		{
+			"item": "minecraft:comparator",
+			"weight": 10
+		},
+		{
+			"item": "supplementaries:cog_block",
+			"weight": 3
+		},
+		{
+			"item": "minecraft:observer",
+			"weight": 3
+		},
+		{
+			"item": "minecraft:dispenser",
+			"weight": 2
+		},
+		{
+			"item": "minecraft:dropper",
+			"weight": 2
+		},
+		{
+			"item": "minecraft:piston",
+			"weight": 2
+		},
+		{
+			"item": "minecraft:sticky_piston",
+			"weight": 2
+		},
+		{
+			"item": "minecraft:daylight_detector",
+			"weight": 1
+		},
+		{
+			"item": "minecraft:note_block",
+			"weight": 1
+		},
+		{
+			"item": "create:redstone_link",
+			"weight": 1
+		},
+		{
+			"item": "create:redstone_contact",
+			"weight": 1
+		},
+		{
+			"item": "create:powered_latch",
+			"weight": 1
+		},
+		{
+			"item": "create:powered_toggle_latch",
+			"weight": 1
+		},
+		{
+			"item": "create:pulse_repeater",
+			"weight": 1
+		},
+		{
+			"item": "create:pulse_extender",
+			"weight": 1
+		},
+		{
+			"item": "create:analog_lever",
+			"weight": 1
+		},
+		{
+			"item": "bobberdetector:bobber_detector",
+			"weight": 1
+		},
+		{
+			"item": "createaddition:redstone_relay",
+			"weight": 1
+		}
+	]
+}

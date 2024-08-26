@@ -1,0 +1,34 @@
+{
+	"name": "Steel",
+	"rolls": 10,
+	"items": [
+		{
+			"item": "kubejs:steel_casing",
+			"weight": 50
+		},
+		{
+			"item": "createindustry:coal_coke",
+			"weight": 25
+		},
+		{
+			"item": "#forge:ingots/steel",
+			"weight": 12
+		},
+		{
+			"item": "createindustry:steel_casing",
+			"weight": 6
+		},
+		{
+			"item": "create_dd:steel_casing",
+			"weight": 4
+		},
+		{
+			"item": "kubejs:steel_repair_kit",
+			"weight": 4
+		},
+		{
+			"item": "createindustry:steel_mechanism",
+			"weight": 1
+		}
+	]
+}
