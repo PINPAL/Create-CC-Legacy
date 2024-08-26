@@ -1,11 +1,8 @@
 package com.github.pinpal;
 
-import com.github.pinpal.JEIPlugin;
-import com.github.pinpal.LootboxRecipe;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiComponent;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -80,7 +77,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 					.addItemStack(output);
 			x += slotSize;
 			if (x > columns * slotSize) {
-				x = padding;
+				x = padding + slotPadding;
 				y += slotSize + slotSize / 2;
 			}
 		}
@@ -113,7 +110,7 @@ public class LootboxResultsCategory implements IRecipeCategory<LootboxRecipe> {
 		int x = padding;
 		int y = navHeight + slotSize;
 		for (int i = 0; i < recipe.getOutputs().size(); i++) {
-			String weightText = formatPercentage(recipe.getOutputWeights().get(i));
+			String weightText = formatPercentage(recipe.getOutputChance().get(i));
 			font.draw(poseStack, weightText, x + 2, y + 2, 0xA8A8A8);
 			x += slotSize;
 			if (x > columns * slotSize) {
