@@ -1,5 +1,7 @@
 package com.github.pinpal;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -17,10 +19,11 @@ import org.slf4j.LoggerFactory;
 
 @Mod(CreateCC.MODID)
 public class CreateCC {
-    // Define mod id in a common place for everything to reference
     public static final String MODID = "createcc";
-    // Directly reference a slf4j logger
     public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
+
+    // Create a CreateRegistrate instance for your mod
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
 
     // Define Deferred Registers for blocks and items
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
@@ -33,12 +36,25 @@ public class CreateCC {
     public CreateCC() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register the Deferred Register to the mod event bus so the lootbox gets registered
+        // Register your blocks and items
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
 
-        // Register ourselves for server and other game events we are interested in
+        // Register custom items and blocks
+        AllItems.register();
+        AllBlocks.register();
+        AllBlockEntityTypes.register();
+
+        // Register event listeners for CreateRegistrate
+        REGISTRATE.registerEventListeners(modEventBus);
+
+        // Register ourselves for server and other game events
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    // Utility
+    public static ResourceLocation asResource(String path) {
+        return new ResourceLocation(CreateCC.MODID, path);
     }
 
 }
